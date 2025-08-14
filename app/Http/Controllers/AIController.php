@@ -15,25 +15,24 @@ class AIController extends Controller
     {
         $question = $request->input('question');
 
-        // 1. Fetch some DB data (example: users & webinars)
+        // Fetch some DB data (example: users & webinars)
         $users = User::pluck('name')->toArray();
         $webinars = Webinar::pluck('title')->toArray();
-        $webinarBooking = WebinarBooking::pluck('first_name')->toArray(); // Assuming you want to include webinar bookings
-        $booking = Booking::pluck('name')->toArray(); // Assuming you want to include bookings if needed
-
-        // 2. Combine context + user question
+        $webinarBooking = WebinarBooking::pluck('first_name')->toArray();
+        $booking = Booking::pluck('name')->toArray();
+        // Combine context + user question
         $context = "Database Info:\nUsers: " . implode(', ', $users) .
                    "\nWebinars: " . implode(', ', $webinars) .
                    "\nWebinarBookings: " . implode(', ', $webinarBooking) .
                    "\nBookings: " . implode(', ', $booking) .
                    "\nQuestion: " . $question;
 
-        // 3. Call Perplexity API
+        // Call Perplexity API
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . env('PERPLEXITY_API_KEY'),
             'Content-Type'  => 'application/json',
         ])->post('https://api.perplexity.ai/chat/completions', [
-            'model' => 'sonar-pro', // pro model
+            'model' => 'sonar-pro', 
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant that answers based on provided database info.'],
                 ['role' => 'user', 'content' => $context],
