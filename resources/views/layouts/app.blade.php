@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +32,7 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 18px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             z-index: 9999;
         }
 
@@ -45,7 +46,7 @@
             background: white;
             border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -80,6 +81,7 @@
             flex: 1;
             overflow-y: auto;
             font-size: 14px;
+            align-self: flex-end;
         }
 
         /* Form */
@@ -87,12 +89,29 @@
             display: flex;
             border-top: 1px solid #ccc;
         }
+
         #question {
             flex: 1;
             padding: 8px;
             border: none;
             outline: none;
+            align-self: flex-end;
         }
+
+        .user-message {
+            text-align: right;
+            margin: 5px 0;
+        }
+
+        .user-message span {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 70%;
+        }
+
         #chatForm button {
             background: #007bff;
             color: white;
@@ -112,8 +131,24 @@
             bottom: 5px;
             right: 5px;
         }
+
+        /* Chat message styles */
+        .ai-message {
+            text-align: left;
+            margin: 5px 0;
+        }
+
+        .ai-message span {
+            display: inline-block;
+            background: #f1f1f1;
+            color: black;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 70%;
+        }
     </style>
 </head>
+
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
@@ -181,10 +216,10 @@
         });
 
         // Chat form submit
-        document.getElementById('chatForm').addEventListener('submit', function(e) {
+        document.getElementById('chatForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const question = document.getElementById('question').value;
-            chatMessages.innerHTML += `<div><strong>You:</strong> ${question}</div>`;
+            chatMessages.innerHTML += `<div class="user-message"><strong>You:</strong> ${question}</div>`;
             document.getElementById('question').value = '';
 
             fetch('/ai-chat', {
@@ -195,11 +230,11 @@
                 },
                 body: JSON.stringify({ question })
             })
-            .then(res => res.json())
-            .then(data => {
-                chatMessages.innerHTML += `<div><strong>AI:</strong> ${data.answer}</div>`;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            });
+                .then(res => res.json())
+                .then(data => {
+                    chatMessages.innerHTML += `<div class="ai-message"><strong>AI:</strong> ${data.answer}</div>`;
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                });
         });
 
         // Dragging logic
@@ -242,4 +277,5 @@
         });
     </script>
 </body>
+
 </html>
