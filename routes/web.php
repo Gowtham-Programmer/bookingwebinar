@@ -6,7 +6,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\WebinarBookingController;
 use App\Http\Controllers\WebinarController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 require __DIR__.'/auth.php';
 Route::get('/', function () {
@@ -100,3 +103,24 @@ Route::get('/payment/{webinar}', [App\Http\Controllers\PaymentController::class,
 // Process payment
 Route::post('/payment/{webinar}', [App\Http\Controllers\PaymentController::class, 'processPayment'])->name('payment.process');
 
+Route::get('auth/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.login');
+
+Route::get('auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+
+    // Find or create user
+    $user = User::updateOrCreate(
+        ['email' => $googleUser->getEmail()],
+        [
+            'name' => $googleUser->getName(),
+            'password' => bcrypt(str()->random(16)), // random password
+            'google_id' => $googleUser->getId(),
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
+});

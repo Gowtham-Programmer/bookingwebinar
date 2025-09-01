@@ -48,9 +48,9 @@
 
     <main id="home">
         <h1 class="lg-heading">
-            Gowtham <span class="text-secondary">Ramesh</span>
+            Welcome to <span class="text-secondary">Webinar Content</span>
         </h1>
-        <h2 class="sm-heading">Programmer, Web Developer & Web Content Writer</h2>
+        <h2 class="sm-heading">Web Developer</h2>
 
         <div class="icons">
             <a href="#"><i class="fab fa-github fa-2x"></i></a>
@@ -60,7 +60,8 @@
         </div>
          <!-- Login Button -->
     <div class="auth-section mt-3">
-    <a href="/login" class="btn btn-primary">Login</a>
+        <br>
+    <a href="/login">Login</a>
     <p class="mt-2">Not registered? <a href="/register" class="text-decoration-none">Click here to register</a></p>
 </div>
     </main>

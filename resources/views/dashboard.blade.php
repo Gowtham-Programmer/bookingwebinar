@@ -1,8 +1,8 @@
 <x-app-layout>
     <style>
-        body {
-            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-        }
+         {
+            background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.justdial.com%2FBangalore%2FZibtek-Pvt-Ltd-Opposite-Chowdeshwari-Temple-Ombr-Layout-Banaswadi%2F080PXX80-XX80-181218112527-S6M9_BZDET&psig=AOvVaw0W5NiDgyj0Rfjrk-ul7X2b&ust=1756794516753000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCID5r9v3to8DFQAAAAAdAAAAABAE');
+        }body
 
         .overlay {
             background: rgba(0, 0, 0, 0.5);
@@ -18,79 +18,97 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
         }
     </style>
+
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('📊 Dashboard') }}
-        </h2>
-        <!-- <h1>hello</h1>hi -->
-
-
-        <div class="py-10">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background:#028393ff">
+        <div class="py-4" style="background-image: url('{{ asset('uploads/img/ai1.jpg') }}'); background-size: cover; background-position: center;">
+            <div class="container p-4 rounded" style="background:#028393ff;">
 
                 {{-- Greeting Section --}}
-                <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md mb-6" style="color:black;">
-                    <h3 class="text-2xl font-bold">Welcome, {{ Auth::check() ? Auth::user()->name : 'Guest' }} 👋 </h3>
-                    <p class="mt-1">Manage webinars, view analytics, and create new events from here.</p>
+                <div class="alert alert-info shadow mb-4 bg-light">
+                    <h3 class="fw-bold fs-4 text-dark">
+                        Welcome, {{ Auth::check() ? Auth::user()->name : 'Guest' }} 👋
+                    </h3>
+                    <p class="mt-2">Manage webinars, view analytics, and create new events from here.</p>
                 </div>
+
                 {{-- Action Buttons --}}
-                <div class="flex gap-4 mb-6">
-                    <a href="{{ route('webinars.index') }}"
-                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow">📅 View Webinars</a>
-                    <a href="{{ route('webinars.create') }}"
-                        class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded shadow">➕ Add Webinar</a>
+                <div class="d-flex gap-3 mb-4">
+                    <a href="{{ route('webinars.index') }}" class="btn btn-success shadow">
+                        📅 View Webinars
+                    </a>
+                    <a href="{{ route('webinars.create') }}" class="btn btn-primary shadow">
+                        ➕ Add Webinar
+                    </a>
                 </div>
 
                 {{-- Quick Stats --}}
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <h4 class="text-lg font-semibold">Total Webinars</h4>
-                        <p class="text-3xl font-bold text-blue-600">{{ \App\Models\Webinar::count() }}</p>
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <h4 class="fw-semibold">Total Webinars</h4>
+                                <p class="display-6 text-primary">{{ \App\Models\Webinar::count() }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <h4 class="text-lg font-semibold">Upcoming Events</h4>
-                        <p class="text-3xl font-bold text-green-600">
-                            {{ \App\Models\Webinar::where('date', '>=', today())->count() }}
-                        </p>
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <h4 class="fw-semibold">Upcoming Events</h4>
+                                <p class="display-6 text-success">
+                                    {{ \App\Models\Webinar::where('date', '>=', today())->count() }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow">
-                        <h4 class="text-lg font-semibold">Past Events</h4>
-                        <p class="text-3xl font-bold text-gray-600">
-                            {{ \App\Models\Webinar::where('date', '<', today())->count() }}
-                        </p>
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <h4 class="fw-semibold">Past Events</h4>
+                                <p class="display-6 text-muted">
+                                    {{ \App\Models\Webinar::where('date', '<', today())->count() }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {{-- Recent Webinars Table --}}
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h4 class="text-xl font-bold mb-4">📌 Recent Webinars</h4>
-                    <table class="w-full table-auto border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border px-4 py-2 text-left">Title</th>
-                                <th class="border px-4 py-2">Date</th>
-                                <th class="border px-4 py-2">Time</th>
-                                <th class="border px-4 py-2">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse(\App\Models\Webinar::latest()->take(5)->get() as $webinar)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $webinar->title }}</td>
-                                    <td class="border px-4 py-2">{{ $webinar->date }}</td>
-                                    <td class="border px-4 py-2">{{ date('h:i A', strtotime($webinar->time)) }}</td>
-                                    <td class="border px-4 py-2">
-                                        <a href="{{ route('webinars.show', $webinar->id) }}"
-                                            class="text-blue-600 hover:underline">View</a>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="text-center py-4 text-gray-500">No webinars available</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">📌 Recent Webinars</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse(\App\Models\Webinar::latest()->take(5)->get() as $webinar)
+                                        <tr>
+                                            <td>{{ $webinar->title }}</td>
+                                            <td>{{ $webinar->date }}</td>
+                                            <td>{{ date('h:i A', strtotime($webinar->time)) }}</td>
+                                            <td>
+                                                <a href="{{ route('webinars.show', $webinar->id) }}"
+                                                    class="btn btn-link text-primary">View</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted py-3">
+                                                No webinars available
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
             </div>
