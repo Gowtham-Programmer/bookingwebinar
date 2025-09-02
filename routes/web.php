@@ -8,6 +8,8 @@ use App\Http\Controllers\WebinarBookingController;
 use App\Http\Controllers\WebinarController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -110,15 +112,22 @@ Route::get('auth/google', function () {
 Route::get('auth/google/callback', function () {
     $googleUser = Socialite::driver('google')->user();
 
-    // Find or create user
-    $user = User::updateOrCreate(
-        ['email' => $googleUser->getEmail()],
-        [
-            'name' => $googleUser->getName(),
-            'password' => bcrypt(str()->random(16)), // random password
+    $user = User::where('email', $googleUser->getEmail())->first();
+
+    if ($user) {
+        // If user exists, just update google_id if missing
+        if (!$user->google_id) {
+            $user->update(['google_id' => $googleUser->getId()]);
+        }
+    } else {
+        // If new user, create with google_id
+        $user = User::create([
+            'name'      => $googleUser->getName(),
+            'email'     => $googleUser->getEmail(),
             'google_id' => $googleUser->getId(),
-        ]
-    );
+            // don't set/change password here, user must use their original registered password
+        ]);
+    }
 
     Auth::login($user);
 

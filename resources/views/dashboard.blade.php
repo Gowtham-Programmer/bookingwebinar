@@ -21,7 +21,7 @@
 
     <x-slot name="header">
         <div class="py-4" style="background-image: url('{{ asset('uploads/img/ai1.jpg') }}'); background-size: cover; background-position: center;">
-            <div class="container p-4 rounded" style="background:#028393ff;">
+            <div width="80px" style="background:#028393ff;">
 
                 {{-- Greeting Section --}}
                 <div class="alert alert-info shadow mb-4 bg-light">
@@ -67,6 +67,16 @@
                                 <h4 class="fw-semibold">Past Events</h4>
                                 <p class="display-6 text-muted">
                                     {{ \App\Models\Webinar::where('date', '<', today())->count() }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3" >
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <h4 class="fw-semibold">Completed Events</h4>
+                                <p class="display-6 text-success">
+                                    {{ \App\Models\Webinar::where('date', '<=', today())->count() }}
                                 </p>
                             </div>
                         </div>

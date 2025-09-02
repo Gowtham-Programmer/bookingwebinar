@@ -15,6 +15,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -168,6 +170,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Chat Toggle -->
     <button id="chatToggle">💬</button>
@@ -195,11 +199,18 @@
         const expandBtn = document.getElementById('expandChat');
 
         let isExpanded = false;
-
-        // Toggle chat popup
         toggleBtn.addEventListener('click', () => {
-            chatPopup.style.display = (chatPopup.style.display === 'none') ? 'flex' : 'none';
-        });
+    if (chatPopup.style.display === 'none' || chatPopup.style.display === '') {
+        chatPopup.style.display = 'flex';
+
+        // Add intro message if chat is empty
+        if (!chatMessages.hasChildNodes()) {
+            chatMessages.innerHTML = `<div class="ai-message"><span>👋 Hi! I’m your AI assistant. How can I help you today?</span></div>`;
+        }
+    } else {
+        chatPopup.style.display = 'none';
+    }
+});
 
         // Expand / shrink button
         expandBtn.addEventListener('click', () => {
