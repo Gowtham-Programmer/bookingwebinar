@@ -58,4 +58,16 @@ class WebinarController extends Controller
         $webinar->delete();
         return redirect()->route('webinars.index')->with('success', 'Webinar deleted successfully!');
     }
+
+     public function register($id)
+    {
+        $webinar = Webinar::findOrFail($id);
+        return redirect()->route('payment.page', ['id' => $webinar->id]);
+    }
+
+    public function paymentPage($id)
+    {
+        $webinar = Webinar::findOrFail($id);
+        return view('payment', compact('webinar'));
+    }
 }

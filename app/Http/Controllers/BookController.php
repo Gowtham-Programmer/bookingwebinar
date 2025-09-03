@@ -57,6 +57,8 @@ class BookController extends Controller
             }
         );
 
-        return redirect()->route('my.webinars')->with('success', 'Webinar booked successfully!');
+        // return redirect()->route('my.webinars')->with('success', 'Webinar booked successfully!');
+        return redirect()->route('payment.form', $webinar->id);
+
     }
 }

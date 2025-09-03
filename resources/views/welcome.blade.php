@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <title>Ayush's Portfolio</title>
 </head>
@@ -54,8 +56,9 @@
 
         <div class="icons">
             <a href="#"><i class="fab fa-github fa-2x"></i></a>
-            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+            <!-- <a href="#"><i class="fab fa-twitter fa-2x"></i></a> -->
+            <a href="https://x.com/home"><i class="fa-brands fa-x-twitter fa-2x"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
             <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
         </div>
          <!-- Login Button -->

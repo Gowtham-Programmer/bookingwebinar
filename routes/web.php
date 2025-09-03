@@ -104,6 +104,8 @@ Route::get('/payment/{webinar}', [App\Http\Controllers\PaymentController::class,
 
 // Process payment
 Route::post('/payment/{webinar}', [App\Http\Controllers\PaymentController::class, 'processPayment'])->name('payment.process');
+Route::get('/payment-success/{webinar}', [App\Http\Controllers\PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
 
 Route::get('auth/google', function () {
     return Socialite::driver('google')->redirect();
@@ -133,3 +135,6 @@ Route::get('auth/google/callback', function () {
 
     return redirect('/dashboard');
 });
+
+Route::get('/webinar/{id}/register', [WebinarController::class, 'register'])->name('webinar.register');
+Route::get('/payment/{id}', [WebinarController::class, 'paymentPage'])->name('payment.page');
