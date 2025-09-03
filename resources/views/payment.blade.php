@@ -13,7 +13,9 @@
 
     <style>
         body {
-            background: #f8f9fa;
+            /* background: #f8f9fa; */
+            /* background-color: silver; */
+            background-image: url('{{ asset('uploads/img/payment.jpg') }}');
         }
         .payment-card {
             max-width: 900px;
@@ -109,7 +111,7 @@
             </div>
             <div class="summary-row">
                 <span>Discount</span>
-                <span id="discount">$0.00</span>
+                <span id="discount">$5.00</span>
             </div>
             <div class="summary-row font-weight-bold">
                 <span>Total</span>
@@ -126,8 +128,39 @@
 <!-- jQuery & Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+// $(document).ready(function() {
+//     let discountRate = 0.5; // default no discount
+
+//     function updateSummary() {
+//         let price = parseFloat($("#plan").val());
+//         let discountAmount = price * discountRate;
+//         let total = price - discountAmount;
+
+//         $("#subtotal").text(`$${price.toFixed(2)}`);
+//         $("#discount").text(`$${discountAmount.toFixed(2)}`);
+//         $("#total").text(`$${total.toFixed(2)}`);
+//     }
+
+//     $("#plan").on("change", function() {
+//         updateSummary();
+//     });
+
+//     $("#promo-link").on("click", function() {
+//         let promo = prompt("Enter promo code:");
+//         if (promo && promo.toLowerCase() === "save10") {
+//             discountRate = 0.50; // 10% discount
+//             alert("Promo applied: 10% off!");
+//         } else {
+//             discountRate = 0;
+//             alert("Invalid promo code.");
+//         }
+//         updateSummary();
+//     });
+
+//     updateSummary();
+
 $(document).ready(function() {
-    let discountRate = 0; // default no discount
+    let discountRate = 0; // no discount by default
 
     function updateSummary() {
         let price = parseFloat($("#plan").val());

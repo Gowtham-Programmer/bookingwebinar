@@ -13,5 +13,8 @@ class Webinar extends Model
         'time',
         'link',
         'image',
+        'price',
     ];
+
+
 }
