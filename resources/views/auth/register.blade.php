@@ -66,6 +66,12 @@
                         <input type="password" id="password_confirmation" name="password_confirmation" required
                             autocomplete="new-password" class="form-control rounded-3">
                     </div>
+                    <!-- Submit Button -->
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-success rounded-3 py-2 fw-bold">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
 
                     <!-- Buttons -->
                     <div class="d-flex justify-content-between align-items-center">
@@ -80,4 +86,5 @@
         </div>
     </div>
 </body>
+
 </html>
