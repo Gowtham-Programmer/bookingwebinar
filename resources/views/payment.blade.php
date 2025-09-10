@@ -68,10 +68,9 @@
         <!-- Left Side: Payment Form -->
         <div class="col-md-7 p-4">
             <h5 class="mb-3">Choose Your Plan</h5>
-            <select id="plan" class="form-control mb-4">
-                <option value="{{ $webinar->price }}">Basic - ${{ $webinar->price }}</option>
-                <!-- <option value="79.99">Standard - $79.99</option>
-                <option value="99.99">Premium - $99.99</option> -->
+            <select id="plan" class="form-control mb-4">                 
+                <option value="79.99">Standard - $79.99</option>
+                <option value="99.99">Premium - $99.99</option>
             </select>
 
             <h5 class="mb-3">Card Information</h5>

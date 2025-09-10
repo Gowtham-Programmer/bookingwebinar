@@ -138,3 +138,7 @@ Route::get('auth/google/callback', function () {
 
 Route::get('/webinar/{id}/register', [WebinarController::class, 'register'])->name('webinar.register');
 Route::get('/payment/{id}', [WebinarController::class, 'paymentPage'])->name('payment.page');
+
+Route::get('webinars/{webinar}/download-ics', [BookController::class, 'downloadIcs'])
+    ->name('webinars.download-ics')
+    ->middleware('auth');

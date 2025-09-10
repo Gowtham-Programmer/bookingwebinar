@@ -111,6 +111,7 @@
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Join Link</th>
+                                <th>Total Registered</th>
                                 <th style="width: 180px;">Actions</th>
                             </tr>
                         </thead>
@@ -134,6 +135,7 @@
                                             <span class="text-muted">Coming soon</span>
                                         @endif
                                     </td>
+                                    <td>{{ $w->link ? '✅' : '❌' }}</td>
                                     <td>
                                         <a href="{{ route('webinars.edit', $w->id) }}" class="btn btn-primary btn-sm">✏
                                             Edit</a>

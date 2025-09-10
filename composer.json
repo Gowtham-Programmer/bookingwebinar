@@ -9,7 +9,9 @@
         "php": "^8.2",
         "doctrine/dbal": "^4.3",
         "laravel/framework": "^12.0",
+        "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.10.1",
+        "spatie/icalendar-generator": "^3.0",
         "stripe/stripe-php": "^17.5"
     },
     "require-dev": {
