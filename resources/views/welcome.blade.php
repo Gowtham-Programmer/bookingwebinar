@@ -1,74 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
-    <!-- Your Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-    <title>Gowtham's Portfolio</title>
+  <title>Gowtham's Portfolio</title>
 </head>
 
-<body id="bg-img">
-<header>
-    <div class="menu-btn">
-        <div class="btn-line half start"></div>
-        <div class="btn-line"></div>
-        <div class="btn-line half end"></div>
-    </div>
+<body class="bg-light">
 
-    <nav class="menu">
-        <div class="menu-brand">
-            <div class="portrait" style="background-image: url('{{ asset('uploads/img/welcome.jpeg') }}');
-                                        width: 300px;
-                                        height: 300px;
-                                        background-size: cover;
-                                        background-position: center;
-                                        border-radius: 50%;">
-            </div>
-        </div>
-        <ul class="menu-nav">
-            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link active">Home</a></li>
-            <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About Me</a></li>
-            <li class="nav-item"><a href="work.html" class="nav-link">My Work</a></li>
-            <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact Me</a></li>
-        </ul>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{{ url('/') }}">Gowtham</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="{{ url('/') }}" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About Me</a></li>
+        <li class="nav-item"><a href="{{ url('/work') }}" class="nav-link">My Work</a></li>
+        <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact Me</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="bg-dark text-white text-center py-5">
+  <div class="container">
+    <img src="{{ asset('uploads/img/welcome.jpeg') }}" 
+         alt="Portrait" 
+         class="rounded-circle mb-3 shadow"
+         width="200" height="200">
+    <h1 class="display-4">Welcome to <span class="text-warning">Webinar Content</span></h1>
+    <p class="lead">Web Developer</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="#" class="text-white"><i class="fab fa-github fa-2x"></i></a>
+      <a href="https://x.com/home" class="text-white"><i class="fa-brands fa-x-twitter fa-2x"></i></a>
+      <a href="https://www.instagram.com/" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="#" class="text-white"><i class="fab fa-linkedin fa-2x"></i></a>
+    </div>
+  </div>
 </header>
 
-<main id="home">
-    <h1 class="lg-heading">Welcome to <span class="text-secondary">Webinar Content</span></h1>
-    <h2 class="sm-heading">Web Developer</h2>
+<!-- Auth Section -->
+<section class="py-5">
+  <div class="container text-center">
+    <a href="{{ url('/login') }}" class="btn btn-primary btn-lg">Login</a>
+    <p class="mt-3">Not registered? <a href="{{ url('/register') }}" class="fw-bold">Click here to register</a></p>
+  </div>
+</section>
 
-    <div class="icons">
-        <a href="#"><i class="fab fa-github fa-2x"></i></a>
-        <a href="https://x.com/home"><i class="fa-brands fa-x-twitter fa-2x"></i></a>
-        <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-    </div>
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p class="mb-0">&copy; 2025 Gowtham's Portfolio. All rights reserved.</p>
+</footer>
 
-    <div class="auth-section mt-3">
-        <br>
-        <a href="{{ url('/login') }}">Login</a>
-        <p class="mt-2">Not registered? <a href="{{ url('/register') }}" class="text-decoration-none">Click here to register</a></p>
-    </div>
-</main>
-
-<!-- Bootstrap JS Bundle -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Font Awesome JS -->
-<script src="https://kit.fontawesome.com/980a2af8f9.js" crossorigin="anonymous"></script>
-
-<!-- Your Custom JS -->
-<script src="{{ asset('js/main.js') }}"></script>
 
 </body>
 </html>

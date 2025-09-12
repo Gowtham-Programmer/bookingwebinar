@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Webinar;
+use App\Models\Booking;
 use App\Models\WebinarBooking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;

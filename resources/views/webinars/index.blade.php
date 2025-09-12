@@ -135,7 +135,7 @@
                                             <span class="text-muted">Coming soon</span>
                                         @endif
                                     </td>
-                                    <td>{{ $w->link ? '✅' : '❌' }}</td>
+                                    <td>{{ $w->bookings_count }}</td>
                                     <td>
                                         <a href="{{ route('webinars.edit', $w->id) }}" class="btn btn-primary btn-sm">✏
                                             Edit</a>

@@ -17,7 +17,7 @@ class Webinar extends Model
         'price',
     ];
     protected $dates = ['date'];
-     // Get start datetime as Carbon instance
+    // Get start datetime as Carbon instance
     public function getStartDateTimeAttribute()
     {
         return Carbon::parse("{$this->date} {$this->time}");
@@ -27,6 +27,11 @@ class Webinar extends Model
     public function getEndDateTimeAttribute()
     {
         return $this->start_date_time->copy()->addHour();
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(WebinarBooking::class);
     }
 
 }

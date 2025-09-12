@@ -10,7 +10,10 @@ class WebinarController extends Controller
 {
     public function index()
     {
-        $webinars = Webinar::orderBy('date', 'asc')->get();
+        // $webinars = Webinar::orderBy('date', 'asc')->get();
+        $webinars = Webinar::withCount('bookings')
+        ->orderBy('date', 'asc')
+        ->get();
         return view('webinars.index', compact('webinars'));
     }
     public function create()
