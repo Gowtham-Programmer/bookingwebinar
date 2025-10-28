@@ -35,7 +35,7 @@
             <div>
                 <label for="email" class="form-label">Email</label>
                 <input id="email" type="email" name="email" class="form-control" required autofocus>
-            </div>
+            </div> 
 
             <!-- Password -->
             <div>
